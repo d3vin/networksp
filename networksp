@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+ssid     = ARGV.shift
+password = ARGV.shift
+
+`sudo networksetup -setairportnetwork en1 \"#{ssid}\" #{password}`
