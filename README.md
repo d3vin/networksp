@@ -5,7 +5,7 @@ change wifi networks from CLI in os x (when ur too lazy to exit fullscreen termi
 
 usage: 
 
-<code> networksp <SSID> <password></code>
+<code> networksp \<SSID\> \<password\></code>
 
 for this to work you need to create a symlink for airport:
 
