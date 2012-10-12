@@ -1,6 +1,29 @@
 #!/usr/bin/env ruby
 
-ssid     = ARGV.shift
-password = ARGV.shift
+require 'rubygems'
+require 'trollop'
+
+opts = Trollop::Parser.new do
+
+  # UI stuff
+
+  executable_name = File.basename($PROGRAM_NAME)
+  banner("change os x wifi network from CLI")
+  banner("")
+  banner("usage: #{executable_name} <ssid> <password>")
+  banner("")
+  banner("options:")
+
+  opt :ssid, "enter network ssid", :type => :string
+  opt :password, "enter network password", :type => :string
+end
+
+parse_opts = Trollop::with_standard_exception_handling opts do
+  raise Trollop::HelpNeeded if ARGV.empty?
+  opts.parse ARGV
+end
+
+ssid     = "#{parse_opts[:ssid]}"
+password = "#{parse_opts[:password]}"
 
 `sudo networksetup -setairportnetwork en1 \"#{ssid}\" #{password}`
